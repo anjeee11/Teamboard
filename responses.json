@@ -1,0 +1,230 @@
+[
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/auth/register/",
+      "method": "POST",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }],
+      "body": {
+        "username": "acmecorp",
+        "password": "securepass123",
+        "company_name": "Acme Corp",
+        "email": "dev@acmecorp.com"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "username": "acmecorp",
+        "company_name": "Acme Corp",
+        "api_key": "SC9QmcQCdyZEY8t_gJHa0EkrkSoGvFe8FmNtKzbNvLA",
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/auth/register/",
+      "method": "POST",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }],
+      "body": {
+        "username": "acmecorp",
+        "password": "securepass123",
+        "company_name": "Acme Corp",
+        "email": "dev@acmecorp.com"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "username": ["Username already exists."]
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/auth/login/",
+      "method": "POST",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }],
+      "body": {
+        "username": "acmecorp",
+        "password": "securepass123"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc",
+        "company_name": "Acme Corp",
+        "api_key": "SC9QmcQCdyZEY8t_gJHa0EkrkSoGvFe8FmNtKzbNvLA"
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/auth/login/",
+      "method": "POST",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }],
+      "body": {
+        "username": "acmecorp",
+        "password": "wrongpassword"
+      }
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "error": "Invalid credentials."
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/kb/query/",
+      "method": "POST",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }],
+      "body": {
+        "search": "jwt"
+      }
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "detail": "Authentication credentials were not provided."
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/kb/query/",
+      "method": "POST",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        {
+          "key": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+        }
+      ],
+      "body": {
+        "search": "select_related"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "search": "select_related",
+        "count": 1,
+        "results": [
+          {
+            "id": "1",
+            "question": "What is select_related in Django ORM?",
+            "answer": "select_related performs a SQL JOIN and fetches related objects in a single query, reducing database hits.",
+            "category": "database"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/kb/query/",
+      "method": "POST",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        {
+          "key": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+        }
+      ],
+      "body": {
+        "search": "zzznomatch999"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "search": "zzznomatch999",
+        "count": 0,
+        "results": []
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/kb/query/",
+      "method": "POST",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        {
+          "key": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+        }
+      ],
+      "body": {}
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "search": ["This field is required."]
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/admin/usage-summary/",
+      "method": "GET",
+      "headers": [
+        {
+          "key": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+        }
+      ],
+      "body": null
+    },
+    "response": {
+      "status": 403,
+      "body": {
+        "detail": "You do not have permission to perform this action."
+      }
+    }
+  },
+  {
+    "request": {
+      "url": "http://127.0.0.1:8000/api/admin/usage-summary/",
+      "method": "GET",
+      "headers": [
+        {
+          "key": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMTA0Nzg0LCJpYXQiOjE3ODExMDQ0ODQsImp0aSI6ImYzMjk0ZmNiMDFhMDRjNTFhMWExYzc5NjI4Y2FkZTlmIiwidXNlcl9pZCI6IjIifQ.xVLIY0Cq6GVvvbjOVFNj2rHwRun5VW1QTlAzzQVyiSc"
+        }
+      ],
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "total_queries": 3,
+        "active_companies": 1,
+        "top_search_terms": [
+          { "search_term": "select_related", "count": 2 },
+          { "search_term": "zzznomatch999", "count": 1 }
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "description": "Verify QueryLog table via PGAdmin",
+      "sql": "SELECT * FROM api_querylog;"
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "rows_count": 3,
+        "rows": [
+          { "search_term": "select_related", "results_count": 1 },
+          { "search_term": "select_related", "results_count": 1 },
+          { "search_term": "zzznomatch999", "results_count": 0 }
+        ]
+      }
+    }
+  }
+]
